@@ -23,7 +23,7 @@ public class SeatReservation extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) throws ParseException {
+    public void start(Stage primaryStage) throws ParseException{
         String dates[] = new String[5];   //Array that holds string values of 5 days from tomorrow
         String dt = String.valueOf((java.time.LocalDate.now()));  //dt is today's date
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -39,7 +39,7 @@ public class SeatReservation extends Application {
         menu(dates);
     }
 
-    public void menu(String[] dates) throws ParseException {
+    public void menu(String[] dates){
         MapData HashMap1 = new MapData(); //connect to MapData Class
         //HashMap1 is used throughout the program passed as parameters
 
@@ -85,7 +85,7 @@ public class SeatReservation extends Application {
         }
     }
 
-    void setStage(String customer, String opt, MapData HashMap1, String[] dates) throws ParseException {
+    void setStage(String customer, String opt, MapData HashMap1, String[] dates){
 
         Stage primaryStage = new Stage();
         primaryStage.setTitle("Train Seats Reservation");
@@ -256,35 +256,42 @@ public class SeatReservation extends Application {
         }
     }
 
-    void addCustomer(String opt, MapData HashMap1, String[] dates) throws ParseException {
-        System.out.println("Enter Customer Name:");
+    void addCustomer(String opt, MapData HashMap1, String[] dates){
         Scanner input = new Scanner(System.in);
-        String addcustomer = input.nextLine().toLowerCase().trim();  //Input String is trimmed and converted to lowercase
-        if (addcustomer.isEmpty()) {
-            System.out.println("Nothing was entered. Please try again.");
-        } else {
-            setStage(addcustomer, opt, HashMap1, dates);
+        String first_name = "";
+        String sur_name = "";
+
+        while(first_name.isEmpty()) {
+            System.out.println("Enter Customer First Name:");
+            first_name = input.next().toLowerCase().trim();  //Input String is trimmed and converted to lowercase
         }
+        while(sur_name.isEmpty()) {
+            System.out.println("Enter Customer Sur Name:");
+            sur_name = input.next().toLowerCase().trim();
+        }
+
+        String customer = first_name +" "+ sur_name;
+        setStage(customer, opt, HashMap1, dates);
+        
     }
 
-    void viewAllSeats(MapData HashMap1, String[] dates) throws ParseException {
+    void viewAllSeats(MapData HashMap1, String[] dates){
         setStage("", "v", HashMap1, dates);
     }
 
-    void viewEmptySeats(MapData HashMap1, String[] dates) throws ParseException {
+    void viewEmptySeats(MapData HashMap1, String[] dates){
         setStage("", "e", HashMap1, dates);
     }
 
-    void FindDeleteOrder(String opt, MapData HashMap1,String[] dates) {
+    void FindDeleteOrder(String opt, MapData HashMap1,String[] dates){
         String customer = "";
         Scanner input = new Scanner(System.in);
         if (opt.equals("f") || opt.equals("d")) {
             while(true){
             System.out.println("Enter Customer Name:");
-            customer = input.nextLine().toLowerCase().trim();
+            customer = input.nextLine().toLowerCase();
             if (customer.isEmpty()) {
                 System.out.println("Nothing was entered. Please try again.");
-                continue;
             } else {
                 break; }
             }
