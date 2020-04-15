@@ -117,7 +117,7 @@ public class SeatReservation extends Application {
         Rectangle rec2 = new Rectangle(0, 0, 35, 35);
         rec2.setFill(Color.SALMON);
         Label label3 = new Label("Reserved Seats");
-        Label label4 = new Label("   Select date:");
+        Label label4 = new Label("   Select Date:");
         label4.setPadding(new Insets(30, 0, 0, 0));
 
         ChoiceBox<String> cb1 = new ChoiceBox<>(FXCollections.observableArrayList(dates));
